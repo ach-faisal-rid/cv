@@ -1,0 +1,374 @@
+/* CV — charcoal + teal, A4 web + print */
+
+:root {
+  --ink: #1a2332;
+  --ink-muted: #4a5568;
+  --ink-soft: #6b7a8f;
+  --paper: #f7f5f1;
+  --sheet: #ffffff;
+  --accent: #0d7377;
+  --accent-soft: #e6f3f3;
+  --rule: #d8dee6;
+  --shadow: 0 12px 40px rgba(26, 35, 50, 0.1);
+
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+
+  --page-width: 210mm;
+  --page-pad: 14mm 16mm;
+  --radius-pill: 999px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: 10.5pt;
+  line-height: 1.55;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(13, 115, 119, 0.12), transparent),
+    linear-gradient(165deg, #e8ece8 0%, var(--paper) 45%, #e4e9ef 100%);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* —— Page sheet —— */
+
+.page {
+  width: min(100% - 1.5rem, var(--page-width));
+  margin: 2rem auto;
+  padding: var(--page-pad);
+  background: var(--sheet);
+  box-shadow: var(--shadow);
+  border-radius: 2px;
+}
+
+/* —— Header —— */
+
+.header {
+  padding-bottom: 1.1rem;
+  border-bottom: 2px solid var(--ink);
+}
+
+.name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 2.15rem;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+.title {
+  margin: 0.35rem 0 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
+
+.contact li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.contact a {
+  color: inherit;
+}
+
+.contact a:hover {
+  color: var(--accent);
+}
+
+.icon {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+/* —— Sections —— */
+
+.section {
+  margin-top: 1.15rem;
+}
+
+.section-title {
+  margin: 0 0 0.55rem;
+  padding-bottom: 0.28rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule);
+}
+
+.profile-text {
+  margin: 0;
+  color: var(--ink-muted);
+  text-wrap: pretty;
+}
+
+/* —— Skill pills —— */
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skills li {
+  padding: 0.28rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid rgba(13, 115, 119, 0.22);
+  border-radius: var(--radius-pill);
+}
+
+/* —— Entries (experience / projects / education) —— */
+
+.entry {
+  margin-top: 0.85rem;
+}
+
+.entry + .entry {
+  margin-top: 1rem;
+}
+
+.entry-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+}
+
+.entry-header .period,
+.entry-header .links {
+  margin-left: auto;
+}
+
+.entry-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.marker {
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-top: 0.28em;
+  flex-shrink: 0;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+
+.meta {
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.period {
+  font-size: 0.78rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--ink-soft);
+}
+
+.role {
+  margin: 0.15rem 0 0.35rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--ink-muted);
+}
+
+.stack-line {
+  margin: 0.2rem 0 0.35rem 1rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.links a {
+  padding: 0.12rem 0.55rem;
+  border: 1px solid rgba(13, 115, 119, 0.35);
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+}
+
+.links a:hover {
+  background: var(--accent-soft);
+  text-decoration: none;
+}
+
+.bullets {
+  margin: 0 0 0 1rem;
+  padding-left: 1.1rem;
+  color: var(--ink-muted);
+}
+
+.bullets li {
+  margin-bottom: 0.2rem;
+}
+
+.bullets li::marker {
+  color: var(--accent);
+}
+
+.section-last {
+  margin-bottom: 0.25rem;
+}
+
+/* —— Responsive —— */
+
+@media (max-width: 640px) {
+  body {
+    background: var(--sheet);
+  }
+
+  .page {
+    width: 100%;
+    margin: 0;
+    padding: 1.25rem 1.1rem 2rem;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .name {
+    font-size: 1.75rem;
+  }
+
+  .entry-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .role,
+  .stack-line,
+  .bullets {
+    margin-left: 0.85rem;
+  }
+}
+
+/* —— Print / PDF —— */
+
+@page {
+  size: A4;
+  margin: 12mm 14mm;
+}
+
+@media print {
+  body {
+    background: none;
+    color: #000;
+    font-size: 10pt;
+  }
+
+  .page {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .links a {
+    border-color: #999;
+  }
+
+  .skills li {
+    background: transparent;
+    border-color: #999;
+    color: #000;
+  }
+
+  .title,
+  .icon,
+  .marker,
+  .stack-line,
+  .bullets li::marker {
+    color: var(--accent);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .section {
+    break-inside: avoid;
+  }
+
+  .entry {
+    break-inside: avoid;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
