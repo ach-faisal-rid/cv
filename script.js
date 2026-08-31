@@ -2,10 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 1. Menampilkan alert dari URL parameter
-    showAlertFromURL();
-    
-    // 2. Validasi form
+    // 1. Validasi form
     const form = document.getElementById('portfolioForm');
     if (form) {
         form.addEventListener('submit', function(e) {
@@ -15,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 3. Preview gambar
+    // 2. Preview gambar
     const fileInput = document.getElementById('gambar');
     if (fileInput) {
         fileInput.addEventListener('change', function(e) {
@@ -23,18 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 4. Auto-hide alert setelah 5 detik
-    const alert = document.getElementById('alert');
-    if (alert && alert.style.display !== 'none') {
-        setTimeout(function() {
-            alert.style.opacity = '0';
-            setTimeout(function() {
-                alert.style.display = 'none';
-            }, 500);
-        }, 5000);
-    }
-    
-    // 5. Counter karakter untuk deskripsi
+    // 3. Counter karakter untuk deskripsi
     const deskripsi = document.getElementById('deskripsi');
     if (deskripsi) {
         deskripsi.addEventListener('input', function() {
@@ -63,25 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-// Fungsi untuk menampilkan alert dari URL
-function showAlertFromURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const status = urlParams.get('status');
-    const message = urlParams.get('message');
-    
-    if (status && message) {
-        const alert = document.getElementById('alert');
-        if (alert) {
-            alert.style.display = 'block';
-            alert.className = 'alert ' + status;
-            alert.textContent = message;
-            
-            // Scroll ke alert
-            alert.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-    }
-}
 
 // Fungsi validasi form
 function validateForm(e) {
@@ -150,14 +117,14 @@ function previewImage(e) {
     // Validasi tipe file
     const validTypes = ['image/jpeg', 'image/png', 'image/gif'];
     if (!validTypes.includes(file.type)) {
-        alert('Format gambar tidak didukung! Gunakan JPG, PNG, atau GIF.');
+        showSwalError('Format gambar tidak didukung! Gunakan JPG, PNG, atau GIF.');
         e.target.value = '';
         return;
     }
     
     // Validasi ukuran file (2MB)
     if (file.size > 2 * 1024 * 1024) {
-        alert('Ukuran gambar maksimal 2MB!');
+        showSwalError('Ukuran gambar maksimal 2MB!');
         e.target.value = '';
         return;
     }
@@ -219,8 +186,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-// Fungsi untuk konfirmasi hapus (untuk digunakan di view.php)
-function confirmDelete(message) {
-    return confirm(message || 'Yakin ingin menghapus data ini?');
-}

@@ -2,11 +2,11 @@
 // view.php - Menampilkan semua data portfolio
 
 require_once 'db.php';
-
 // Ambil semua data portfolio
 $sql = "SELECT * FROM portfolio ORDER BY created_at DESC";
 $result = mysqli_query($conn, $sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -14,6 +14,7 @@ $result = mysqli_query($conn, $sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Lihat Data</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .table-container {
             overflow-x: auto;
@@ -106,14 +107,6 @@ $result = mysqli_query($conn, $sql);
         </div>
 
         <h2>Daftar Portfolio</h2>
-        
-        <?php if (isset($_GET['status']) && $_GET['status'] == 'deleted'): ?>
-            <div class="alert success">✅ Data berhasil dihapus!</div>
-        <?php endif; ?>
-        
-        <?php if (isset($_GET['status']) && $_GET['status'] == 'updated'): ?>
-            <div class="alert success">✅ Data berhasil diupdate!</div>
-        <?php endif; ?>
 
         <div class="table-container">
             <?php if (mysqli_num_rows($result) > 0): ?>
@@ -153,7 +146,7 @@ $result = mysqli_query($conn, $sql);
                                 <td>
                                     <div class="action-buttons">
                                         <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-success btn-sm">✏️ Edit</a>
-                                        <a href="delete.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">🗑️ Hapus</a>
+                                        <a href="delete.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm btn-delete">🗑️ Hapus</a>
                                     </div>
                                 </td>
                             </tr>
@@ -169,6 +162,7 @@ $result = mysqli_query($conn, $sql);
             <?php endif; ?>
         </div>
     </div>
+    <script src="alerts.js"></script>
 </body>
 </html>
 <?php mysqli_close($conn); ?>

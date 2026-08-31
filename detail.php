@@ -27,6 +27,7 @@ if (!$data) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($data['judul']) ?> - Detail Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .detail-container {
             margin-top: 10px;
@@ -135,11 +136,12 @@ if (!$data) {
 
             <div class="detail-actions">
                 <a href="edit.php?id=<?= $data['id'] ?>" class="btn btn-success">✏️ Edit</a>
-                <a href="delete.php?id=<?= $data['id'] ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">🗑️ Hapus</a>
+                <a href="delete.php?id=<?= $data['id'] ?>" class="btn btn-danger btn-delete">🗑️ Hapus</a>
                 <a href="view.php" class="btn btn-secondary">📋 Kembali</a>
             </div>
         </div>
     </div>
+    <script src="alerts.js"></script>
 </body>
 </html>
 <?php mysqli_close($conn); ?>
